@@ -22,13 +22,41 @@ from sklearn import svm
 #print vectorized_array
 #print vectorizer.get_feature_names()
 
-df = pd.read_csv("..\\..\\output_final.csv")
-print df.shape
-del df
-df = pd.read_csv("..\\..\\data\\test.csv")
-print df.shape
-del df
-df = pd.read_csv("..\\..\\classifier\\RandomForest\\output_proba.csv")
-print df.shape
-del df
+#df = pd.read_csv("..\\..\\output_final.csv")
+#print df.shape
+#del df
+#df = pd.read_csv("..\\..\\data\\test.csv")
+#print df.shape
+#del df
+#df = pd.read_csv("..\\..\\classifier\\RandomForest\\output_proba.csv")
+#print df.shape
+#del df
 
+from sklearn.cross_validation import cross_val_score, train_test_split, KFold
+
+#trainX = [[1,2,3,4],
+#          [2,3,4,5],
+#          [6,2,3,4],
+#          [7,3,4,5],
+#          [8,2,3,4],
+#          [9,3,4,5]]
+
+#trainY = [[1],
+#          [2],
+#          [3],
+#          [4],
+#          [5],
+#          [6]]
+
+df = pd.DataFrame(dict(id = [13, 14, 15, 16, 17, 18],col1=[1,2,3,4,5,6], col2 = [5,6,7,8,9,1]))
+df_output = pd.DataFrame(df[['id']])
+
+kf = KFold(df.shape[0], n_folds=3)
+for train, test in kf:
+    df_train = df.loc[train]
+    df_test = df.loc[test]
+    df_output.loc[df_test.index.values,'out1'] = 0
+
+    print df_train
+    print df_test
+    print df_output
