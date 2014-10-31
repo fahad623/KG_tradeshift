@@ -25,6 +25,7 @@
     <Compile Include="01-GridSearchClf\RandomForest.py" />
     <Compile Include="01-GridSearchClf\RandomForest1.py" />
     <Compile Include="01-GridSearchClf\RandomForest2.py" />
+    <Compile Include="01-GridSearchClf\RandomForest3.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="Code1.py" />
     <Compile Include="Code2.py" />
