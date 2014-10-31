@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4038dd84-b040-422b-bb46-4cfd159f6ebe</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>05-ReformatOutput\module1.py</StartupFile>
+    <StartupFile>Test.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,7 +25,9 @@
     <Compile Include="01-GridSearchClf\RandomForest.py" />
     <Compile Include="01-GridSearchClf\RandomForest1.py" />
     <Compile Include="01-GridSearchClf\RandomForest2.py" />
+    <Compile Include="02-BaseClfOutput\Base1.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
+    <Compile Include="05-ReformatOutput\module2.py" />
     <Compile Include="Code1.py" />
     <Compile Include="Code2.py" />
     <Compile Include="Test.py" />
