@@ -3,7 +3,6 @@ import numpy as np
 from sklearn import naive_bayes
 from sklearn import svm
 from sklearn.externals import joblib
-import os
 
 if __name__ == '__main__':
 
@@ -31,17 +30,11 @@ if __name__ == '__main__':
 
     yCols = df_train_Y1.columns.values.tolist()
 
-    for colName in yCols[1:]:
+    for colName in yCols[1:2]:
         Y_train = df_train_Y1[colName].values
 
-        if np.any(Y_train != 0):
-            clf = svm.LinearSVC()
-            clf.fit(X_train, Y_train)
+        clf = svm.LinearSVC()
+        clf.fit(X_train, Y_train)
 
-            pathClassifier = '..\\..\\classifier\\LinearSVC\\classifier_{0}\\'.format(colName)
-
-            if not os.path.exists(pathClassifier):
-                os.makedirs(pathClassifier)
-
-            joblib.dump(clf, pathClassifier+'model.pkl')
+        joblib.dump(clf, '..\\..\\classifier\\my_model.pkl')
         

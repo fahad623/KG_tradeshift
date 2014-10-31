@@ -1,1 +1,4 @@
 data/
+classifier/
+output_final.csv
+output_final.csv.gz
