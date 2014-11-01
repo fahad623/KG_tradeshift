@@ -22,6 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="01-GridSearchClf\KNN1.py" />
+    <Compile Include="01-GridSearchClf\KNN2.py" />
     <Compile Include="01-GridSearchClf\RandomForest.py" />
     <Compile Include="01-GridSearchClf\RandomForest1.py" />
     <Compile Include="01-GridSearchClf\RandomForest2.py" />
