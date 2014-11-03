@@ -1,8 +1,8 @@
 import csv
 import gzip
 
-inFilePath= "..\\..\\..\\classifier\\RandomForest\\output_proba.csv"
-outFilePath = "..\\..\\..\\output_final.csv.gz"
+inFilePath= "..\\..\\..\\classifier\\LogisticRegression\\output_proba.csv"
+outFilePath = "..\\..\\..\\output_final_logistic.csv.gz"
 
 
 if __name__ == '__main__':

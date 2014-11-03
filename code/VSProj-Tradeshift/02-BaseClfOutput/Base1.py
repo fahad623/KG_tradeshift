@@ -6,8 +6,8 @@ from sklearn.cross_validation import cross_val_score, train_test_split, KFold
 
 clfFolder = "..\\..\\..\\classifier\\RandomForest\\"
 
-trainFileX = "..\\..\\..\\data\\trunc_train.csv"
-trainFileY = "..\\..\\..\\data\\trunc_trainLabels.csv"
+trainFileX = "..\\..\\..\\data\\train.csv"
+trainFileY = "..\\..\\..\\data\\trainLabels.csv"
 
 def clean_features(df):
     df.replace('YES', 1, inplace = True)

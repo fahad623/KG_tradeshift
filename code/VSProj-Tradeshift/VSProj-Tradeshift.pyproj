@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4038dd84-b040-422b-bb46-4cfd159f6ebe</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Test.py</StartupFile>
+    <StartupFile>01-GridSearchClf\Logistic1.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,10 +24,14 @@
   <ItemGroup>
     <Compile Include="01-GridSearchClf\KNN1.py" />
     <Compile Include="01-GridSearchClf\KNN2.py" />
+    <Compile Include="01-GridSearchClf\Logistic1.py" />
+    <Compile Include="01-GridSearchClf\Logistic2.py" />
     <Compile Include="01-GridSearchClf\RandomForest.py" />
     <Compile Include="01-GridSearchClf\RandomForest1.py" />
     <Compile Include="01-GridSearchClf\RandomForest2.py" />
     <Compile Include="01-GridSearchClf\RandomForest3.py" />
+    <Compile Include="01-GridSearchClf\rem-RandomForest4.py" />
+    <Compile Include="01-GridSearchClf\SVC1.py" />
     <Compile Include="02-BaseClfOutput\Base1.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="05-ReformatOutput\module2.py" />
