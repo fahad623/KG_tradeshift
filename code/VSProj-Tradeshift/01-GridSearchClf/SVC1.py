@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.svm import SVC
 from sklearn.externals import joblib
 from sklearn.grid_search import GridSearchCV
+from sklearn import preprocessing
 import os
 import shutil
 
@@ -12,19 +13,18 @@ testFileX = "..\\..\\..\\data\\trunc_test.csv"
 clfFolder = "..\\..\\..\\classifier\\SVC\\"
 
 def cv_optimize(X_train, Y_train, clf):
-    #C_range = np.logspace(0, 4, num=5)
-    C_range = [100.0]
+    C_range = np.logspace(0, 4, num=5)
+    #C_range = [100.0]
     gamma_range = 10.0 ** np.arange(-7, -3)
     param_grid = dict(gamma=gamma_range, C=C_range)
 
-    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3)
+    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 4, verbose = 3)
     gs.fit(X_train, Y_train)
     print "gs.best_params_ = {0}, gs.best_score_ = {1}".format(gs.best_params_, gs.best_score_)
     return gs.best_estimator_, gs.best_params_, gs.best_score_
 
 def fit_clf(X_train, Y_train):
     clf = SVC()
-
     clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
@@ -37,7 +37,36 @@ def clean_features(df):
     colsDrop = ['x3', 'x4', 'x34', 'x35', 'x61', 'x64', 'x65', 'x91', 'x94', 'x95']
     df.drop(colsDrop, axis=1, inplace = True)
 
-    df.fillna(-999, inplace = True)
+    df.fillna(0, inplace = True)
+
+def normalize_data(df_train, df_test):
+    exclude = ['x1', 'x2', 'x10', 'x11', 'x12', 'x13', 'x14', 'x24', 'x25', 'x26', 'x30', 'x31', 'x32', 'x33', 
+               'x41', 'x42', 'x43', 'x44', 'x45', 'x55', 'x56', 'x57', 'x58', 'x62', 'x63', 'x71', 'x72', 'x73',
+               'x74', 'x75', 'x85', 'x86', 'x87', 'x92', 'x93', 'x101', 'x102', 'x103', 'x104', 'x105', 'x115',
+               'x116', 'x117', 'x126', 'x127', 'x128', 'x129', 'x130',  'x140', 'x141', 'x142']
+    include = [item for item in df_train.columns.values[1:] if item not in exclude]
+
+    train_exclude = df_train[exclude].values
+    train_include = df_train[include].values
+
+    test_exclude = df_test[exclude].values
+    test_include = df_test[include].values
+
+    scaler = preprocessing.StandardScaler()
+    X_train = scaler.fit_transform(train_include)
+    X_test = scaler.transform(test_include)
+
+    X_train_full = np.hstack((train_exclude, train_include))
+    X_test_full = np.hstack((test_exclude, test_include))
+
+    del train_exclude
+    del train_include
+    del test_exclude
+    del test_include
+    del X_train
+    del X_test
+
+    return X_train_full, X_test_full
 
 if __name__ == '__main__':
 
@@ -46,16 +75,18 @@ if __name__ == '__main__':
     df_train_X = pd.read_csv(trainFileX)
     clean_features(df_train_X)
 
-    df_train_Y = pd.read_csv(trainFileY)
-    
-    X_train = df_train_X.values[:, 1:]
-    yCols = df_train_Y.columns.values.tolist()
-
     df_test = pd.read_csv(testFileX)
     clean_features(df_test)
-    X_test = df_test.values[:, 1:]
+
+    X_train, X_test = normalize_data(df_train_X, df_test) 
+
+    df_train_Y = pd.read_csv(trainFileY)
+    yCols = df_train_Y.columns.values.tolist()
 
     df_output = pd.DataFrame(df_test[['id']])
+
+    del df_train_X
+    del df_test
 
     for colName in yCols[1:]:
         Y_train = df_train_Y[colName].values
