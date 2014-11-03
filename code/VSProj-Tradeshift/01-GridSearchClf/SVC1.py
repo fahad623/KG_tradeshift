@@ -24,8 +24,8 @@ def cv_optimize(X_train, Y_train, clf):
     return gs.best_estimator_, gs.best_params_, gs.best_score_
 
 def fit_clf(X_train, Y_train):
-    clf = SVC()
-    clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
+    clf = SVC(C= 100, gamma = 0.0001, probability = True)
+    #clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
 
@@ -84,6 +84,8 @@ if __name__ == '__main__':
     yCols = df_train_Y.columns.values.tolist()
 
     df_output = pd.DataFrame(df_test[['id']])
+    df_output_proba = pd.DataFrame(df_test[['id']])
+    df_train_predict = pd.DataFrame(df_train_X[['id']])
 
     del df_train_X
     del df_test
@@ -95,6 +97,8 @@ if __name__ == '__main__':
             clf = fit_clf(X_train, Y_train)
 
             df_output[colName] = clf.predict(X_test)
+            df_train_predict[colName] = clf.predict_proba(X_train)[:, 1]
+            df_output_proba[colName] = clf.predict_proba(X_test)[:, 1]
 
             pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)
 
@@ -107,5 +111,9 @@ if __name__ == '__main__':
             joblib.dump(clf, pathClassifier+'model.pkl')
         else:
             df_output[colName] = 0
+            df_output_proba[colName] = 0
+            df_train_predict[colName] = 0
 
     df_output.to_csv(clfFolder + "output.csv", index = False) 
+    df_output_proba.to_csv(clfFolder + "output_proba.csv", index = False)
+    df_train_predict.to_csv(clfFolder + "y_predict.csv", index = False)
