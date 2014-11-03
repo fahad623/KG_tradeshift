@@ -48,15 +48,28 @@ from sklearn.cross_validation import cross_val_score, train_test_split, KFold
 #          [5],
 #          [6]]
 
-df = pd.DataFrame(dict(id = [13, 14, 15, 16, 17, 18],col1=[1,2,3,4,5,6], col2 = [5,6,7,8,9,1]))
-df_output = pd.DataFrame(df[['id']])
+#df = pd.DataFrame(dict(id = [13, 14, 15, 16, 17, 18],col1=[1,2,3,4,5,6], col2 = [5,6,7,8,9,1]))
+#df_output = pd.DataFrame(df[['id']])
 
-kf = KFold(df.shape[0], n_folds=3)
-for train, test in kf:
-    df_train = df.loc[train]
-    df_test = df.loc[test]
-    df_output.loc[df_test.index.values,'out1'] = 0
+#kf = KFold(df.shape[0], n_folds=3)
+#for train, test in kf:
+#    df_train = df.loc[train]
+#    df_test = df.loc[test]
+#    df_output.loc[df_test.index.values,'out1'] = 0
 
-    print df_train
-    print df_test
-    print df_output
+#    print df_train
+#    print df_test
+#    print df_output
+
+trainFileX = "..\\..\\data\\trunc_train.csv"
+df1 = pd.read_csv(trainFileX)
+df2 = pd.read_csv(trainFileX)
+df3 = pd.read_csv(trainFileX)
+df4 = pd.read_csv(trainFileX)
+df5 = pd.read_csv(trainFileX)
+
+del df1
+del df2
+del df3
+a = 9
+

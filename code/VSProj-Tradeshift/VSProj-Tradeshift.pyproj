@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>4038dd84-b040-422b-bb46-4cfd159f6ebe</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>01-GridSearchClf\Logistic1.py</StartupFile>
+    <StartupFile>Test.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

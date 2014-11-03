@@ -30,9 +30,11 @@ if __name__ == '__main__':
     yCols = df_train_Y.columns.values.tolist()
     
     df_output = pd.DataFrame(df_train_Y[['id']])
-	df_output_proba = pd.DataFrame(df_train_Y[['id']])
+    df_output_proba = pd.DataFrame(df_train_Y[['id']])
 
     for colName in yCols[1:]:
+
+        print "Working on"+colName
         
         pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)        
 
@@ -56,13 +58,13 @@ if __name__ == '__main__':
                 clf.fit(X_train, Y_train)
 
                 df_output.loc[df_testx_split.index.values, colName] = clf.predict(X_test)
-				df_output_proba.loc[df_testx_split.index.values, colName] = clf.predict_proba(X_test)[:, 1]
-				
-				del df_trainx_split, df_testx_split, df_trainy_split, df_testy_split, X_train, X_test, Y_train, clf
+                df_output_proba.loc[df_testx_split.index.values, colName] = clf.predict_proba(X_test)[:, 1]
+
+                del df_trainx_split, df_testx_split, df_trainy_split, df_testy_split, X_train, X_test, Y_train, clf
             else:
                 df_output[colName] = 0
-				df_output_proba[colName] = 0
+                df_output_proba[colName] = 0
 
     df_output.to_csv(clfFolder + "output_base.csv", index = False)
-	df_output_proba.to_csv(clfFolder + "output_base_proba.csv", index = False)
+    df_output_proba.to_csv(clfFolder + "output_base_proba.csv", index = False)
 
