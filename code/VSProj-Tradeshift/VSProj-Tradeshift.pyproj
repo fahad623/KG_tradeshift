@@ -25,6 +25,7 @@
     <Compile Include="01-GridSearchClf\KNN1.py" />
     <Compile Include="01-GridSearchClf\KNN2.py" />
     <Compile Include="01-GridSearchClf\LinearSVC1.py" />
+    <Compile Include="01-GridSearchClf\LinearSVC2-lastcol.py" />
     <Compile Include="01-GridSearchClf\Logistic1.py" />
     <Compile Include="01-GridSearchClf\Logistic2.py" />
     <Compile Include="01-GridSearchClf\RandomForest.py" />
