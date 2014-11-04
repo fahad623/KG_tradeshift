@@ -61,15 +61,18 @@ from sklearn.cross_validation import cross_val_score, train_test_split, KFold
 #    print df_test
 #    print df_output
 
-trainFileX = "..\\..\\data\\trunc_train.csv"
-df1 = pd.read_csv(trainFileX)
-df2 = pd.read_csv(trainFileX)
-df3 = pd.read_csv(trainFileX)
-df4 = pd.read_csv(trainFileX)
-df5 = pd.read_csv(trainFileX)
+#trainFileX = "..\\..\\data\\trunc_train.csv"
+#df1 = pd.read_csv(trainFileX)
+#df2 = pd.read_csv(trainFileX)
+#df3 = pd.read_csv(trainFileX)
+#df4 = pd.read_csv(trainFileX)
+#df5 = pd.read_csv(trainFileX)
 
-del df1
-del df2
-del df3
-a = 9
+#del df1
+#del df2
+#del df3
+#a = 9
 
+
+a = [2,3,4,5]
+print a[-1:]

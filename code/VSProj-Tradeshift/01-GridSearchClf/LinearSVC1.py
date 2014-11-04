@@ -1,30 +1,28 @@
 import pandas as pd
 import numpy as np
-from sklearn.svm import SVC
+from sklearn.svm import LinearSVC
 from sklearn.externals import joblib
 from sklearn.grid_search import GridSearchCV
 from sklearn import preprocessing
 import os
 import shutil
 
-trainFileX = "..\\..\\..\\data\\trunc_train.csv"
-trainFileY = "..\\..\\..\\data\\trunc_trainLabels.csv"
-testFileX = "..\\..\\..\\data\\trunc_test.csv"
-clfFolder = "..\\..\\..\\classifier\\SVC\\"
+trainFileX = "..\\..\\..\\data\\train.csv"
+trainFileY = "..\\..\\..\\data\\trainLabels.csv"
+testFileX = "..\\..\\..\\data\\test.csv"
+clfFolder = "..\\..\\..\\classifier\\LinearSVC\\"
 
 def cv_optimize(X_train, Y_train, clf):
-    C_range = np.logspace(0, 4, num=5)
-    #C_range = [100.0]
-    gamma_range = 10.0 ** np.arange(-7, -3)
-    param_grid = dict(gamma=gamma_range, C=C_range)
+    C_range = 10.0 ** np.arange(-1, 4)
+    param_grid = dict(C=C_range)
 
-    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 4, verbose = 3)
+    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3)
     gs.fit(X_train, Y_train)
     print "gs.best_params_ = {0}, gs.best_score_ = {1}".format(gs.best_params_, gs.best_score_)
     return gs.best_estimator_, gs.best_params_, gs.best_score_
 
 def fit_clf(X_train, Y_train):
-    clf = SVC(C= 0.1, gamma = 0.0001, probability = True, verbose=True)
+    clf = LinearSVC(C = 10.0)
     #clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
@@ -84,13 +82,11 @@ if __name__ == '__main__':
     yCols = df_train_Y.columns.values.tolist()
 
     df_output = pd.DataFrame(df_test[['id']])
-    df_output_proba = pd.DataFrame(df_test[['id']])
-    df_train_predict = pd.DataFrame(df_train_X[['id']])
 
     del df_train_X
     del df_test
 
-    for colName in yCols[-1:]:
+    for colName in yCols[1:]:
         print colName
         Y_train = df_train_Y[colName].values
 
@@ -98,23 +94,14 @@ if __name__ == '__main__':
             clf = fit_clf(X_train, Y_train)
 
             df_output[colName] = clf.predict(X_test)
-            df_train_predict[colName] = clf.predict_proba(X_train)[:, 1]
-            df_output_proba[colName] = clf.predict_proba(X_test)[:, 1]
 
             pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)
 
             if not os.path.exists(pathClassifier):
                 os.makedirs(pathClassifier)
-
-            score_file = open(pathClassifier+"Score.txt", "w")
-            score_file.write("Score = {0}".format(clf.score(X_train, Y_train)))
-            score_file.close()
+				
             joblib.dump(clf, pathClassifier+'model.pkl')
         else:
             df_output[colName] = 0
-            df_output_proba[colName] = 0
-            df_train_predict[colName] = 0
 
-    df_output.to_csv(clfFolder + "output.csv", index = False) 
-    df_output_proba.to_csv(clfFolder + "output_proba.csv", index = False)
-    df_train_predict.to_csv(clfFolder + "y_predict.csv", index = False)
+    df_output.to_csv(clfFolder + "output.csv", index = False)
