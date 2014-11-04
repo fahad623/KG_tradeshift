@@ -10,10 +10,10 @@ import shutil
 trainFileX = "..\\..\\..\\data\\train.csv"
 trainFileY = "..\\..\\..\\data\\trainLabels.csv"
 testFileX = "..\\..\\..\\data\\test.csv"
-clfFolder = "..\\..\\..\\classifier\\LinearSVC\\"
+clfFolder = "..\\..\\..\\classifier\\LinearSVC-lastCol\\"
 
 def cv_optimize(X_train, Y_train, clf):
-    C_range = 10.0 ** np.arange(-1, 4)
+    C_range = [0.1, 1, 10]
     param_grid = dict(C=C_range)
 
     gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3)
@@ -22,8 +22,8 @@ def cv_optimize(X_train, Y_train, clf):
     return gs.best_estimator_, gs.best_params_, gs.best_score_
 
 def fit_clf(X_train, Y_train):
-    clf = LinearSVC(C = 10.0)
-    #clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
+    clf = LinearSVC()
+    clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     del df_train_X
     del df_test
 
-    for colName in yCols[1:]:
+    for colName in yCols[-1:]:
         print colName
         Y_train = df_train_Y[colName].values
 
