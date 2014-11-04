@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
                 df_output.loc[df_testx_split.index.values, colName] = clf.predict(X_test)
 
-                del df_trainx_split, df_testx_split, df_trainy_split, df_testy_split, X_train_full, X_train, X_test, Y_train, clf
+                del df_trainx_split, df_testx_split, df_trainy_split, df_testy_split, X_train, X_test, Y_train, clf
             else:
                 df_output[colName] = 0
 
