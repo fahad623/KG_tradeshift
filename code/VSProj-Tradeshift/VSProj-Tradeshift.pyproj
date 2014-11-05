@@ -36,7 +36,8 @@
     <Compile Include="01-GridSearchClf\SVC1.py" />
     <Compile Include="01-GridSearchClf\SVC2-part1.py" />
     <Compile Include="01-GridSearchClf\SVC2-part2.py" />
-    <Compile Include="02-BaseClfOutput\Base_LinearSVC1.py" />
+    <Compile Include="02-BaseClfOutput\Base_LinearSVC1-Part1.py" />
+    <Compile Include="02-BaseClfOutput\Base_LinearSVC1-Part2.py" />
     <Compile Include="02-BaseClfOutput\Base_RandomForest1.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="05-ReformatOutput\module2.py" />

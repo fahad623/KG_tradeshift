@@ -3,6 +3,7 @@ import numpy as np
 import os
 from sklearn.externals import joblib
 from sklearn.cross_validation import cross_val_score, train_test_split, KFold
+from sklearn import preprocessing
 
 clfFolder = "..\\..\\..\\classifier\\LinearSVC\\"
 
@@ -51,13 +52,13 @@ if __name__ == '__main__':
     yCols = df_train_Y.columns.values.tolist()
     df_output = pd.DataFrame(df_train_Y[['id']])
 
-    for colName in yCols[1:]:
+    for colName in yCols[18:]:
 
         print "Working on "+colName
         
         pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)        
 
-        kf = KFold(X_train.shape[0], n_folds = 10)
+        kf = KFold(X_train_full.shape[0], n_folds = 4)
 
         for train, test in kf:
 
@@ -82,5 +83,5 @@ if __name__ == '__main__':
             else:
                 df_output[colName] = 0
 
-    df_output.to_csv(clfFolder + "output_base.csv", index = False)
+    df_output.to_csv(clfFolder + "output_base_part2.csv", index = False)
 

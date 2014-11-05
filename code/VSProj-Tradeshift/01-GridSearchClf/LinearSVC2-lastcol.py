@@ -10,10 +10,10 @@ import shutil
 trainFileX = "..\\..\\..\\data\\train.csv"
 trainFileY = "..\\..\\..\\data\\trainLabels.csv"
 testFileX = "..\\..\\..\\data\\test.csv"
-clfFolder = "..\\..\\..\\classifier\\LinearSVC-lastCol2\\"
+clfFolder = "..\\..\\..\\classifier\\LinearSVC-lastCol3\\"
 
 def cv_optimize(X_train, Y_train, clf):
-    C_range = [0.1, 1, 10, 100]
+    C_range = [1000]
     param_grid = dict(C=C_range)
 
     gs = GridSearchCV(clf, param_grid = param_grid, cv = 4, n_jobs = 1, verbose = 3)
@@ -22,7 +22,7 @@ def cv_optimize(X_train, Y_train, clf):
     return gs.best_estimator_, gs.best_params_, gs.best_score_
 
 def fit_clf(X_train, Y_train):
-    clf = LinearSVC(C = 0.1)
+    clf = LinearSVC()
     clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
