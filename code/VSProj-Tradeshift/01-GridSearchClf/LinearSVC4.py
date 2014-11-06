@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     df_train_Y = pd.read_csv(trainFileY)
     yCols = df_train_Y.columns.values.tolist()
-    df_output_dec_func = pd.DataFrame(df_train_Y[['id']])
+    df_output_dec_func = pd.DataFrame(df_test_X[['id']])
 
     for colName in yCols[1:]:
 
@@ -59,6 +59,7 @@ if __name__ == '__main__':
         pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)    
 
         if os.path.exists(pathClassifier):
+            clf = joblib.load(pathClassifier+'model.pkl')
             df_output_dec_func[colName] = clf.decision_function(X_test)
         else:
             df_output_dec_func[colName] = 0
