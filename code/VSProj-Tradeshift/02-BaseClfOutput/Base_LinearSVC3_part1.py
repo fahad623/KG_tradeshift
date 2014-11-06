@@ -50,10 +50,9 @@ if __name__ == '__main__':
 
     df_train_Y = pd.read_csv(trainFileY)
     yCols = df_train_Y.columns.values.tolist()
-    df_output = pd.DataFrame(df_train_Y[['id']])
     df_output_dec_func = pd.DataFrame(df_train_Y[['id']])
 
-    for colName in yCols[1:18]:
+    for colName in yCols[1:18:]:
 
         print "Working on "+colName
         
@@ -65,27 +64,24 @@ if __name__ == '__main__':
 
             if os.path.exists(pathClassifier):
 
-                df_trainx_split = df_train_X.loc[train]
                 df_testx_split = df_train_X.loc[test]
 
-                df_trainy_split = df_train_Y.loc[train]
-                df_testy_split = df_train_Y.loc[test]
+                df_trainy_split = df_train_Y.loc[train]           
 
                 X_train = X_train_full[train]
                 X_test  = X_train_full[test]
                 Y_train = df_trainy_split[colName].values
+
+                del df_trainy_split
                 
                 clf = joblib.load(pathClassifier+'model.pkl')
                 clf.fit(X_train, Y_train)
 
-                df_output.loc[df_testx_split.index.values, colName] = clf.predict(X_test)
                 df_output_dec_func.loc[df_testx_split.index.values, colName] = clf.decision_function(X_test)
 
-                del df_trainx_split, df_testx_split, df_trainy_split, df_testy_split, X_train, X_test, Y_train, clf
+                del df_testx_split, X_train, X_test, Y_train, clf
             else:
-                df_output[colName] = 0
                 df_output_dec_func[colName] = 0
 
-    df_output.to_csv(clfFolder + "output_base.csv", index = False)
-    df_output_dec_func.to_csv(clfFolder + "output_base_dec_func.csv", index = False)
+    df_output_dec_func.to_csv(clfFolder + "output_base_dec_func_part2.csv", index = False)
 
