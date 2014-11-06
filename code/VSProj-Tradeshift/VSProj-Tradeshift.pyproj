@@ -40,6 +40,7 @@
     <Compile Include="02-BaseClfOutput\Base_LinearSVC1-Part2.py" />
     <Compile Include="02-BaseClfOutput\Base_RandomForest1.py" />
     <Compile Include="03-MetaClf\TrainMetaLogisticRegression1.py" />
+    <Compile Include="04-FinalPredict\Final1.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="05-ReformatOutput\module2.py" />
     <Compile Include="Code1.py" />

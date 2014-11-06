@@ -14,7 +14,7 @@ clfFolder = "..\\..\\..\\classifier\\Meta\\"
 
 
 def cv_optimize(X_train, Y_train, clf):
-    alpha_range = [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000]
+    alpha_range = 10.0 ** np.arange(-6, 4)
     param_grid = dict(alpha=alpha_range)
 
     gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3)
