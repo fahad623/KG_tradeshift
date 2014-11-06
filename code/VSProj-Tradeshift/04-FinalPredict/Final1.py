@@ -17,7 +17,7 @@ if __name__ == '__main__':
     df_output = pd.DataFrame(df_test_X1[['id']])
     df_output_proba = pd.DataFrame(df_test_X1[['id']])
 
-    yCols = X_test.columns.values.tolist()
+    yCols = df_test_X1.columns.values.tolist()
 
     for colName in yCols[1:]:
 

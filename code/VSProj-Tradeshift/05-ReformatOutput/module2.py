@@ -1,8 +1,8 @@
 import csv
 import gzip
 
-inFilePath= "..\\..\\..\\classifier\\LogisticRegression\\output_proba.csv"
-outFilePath = "..\\..\\..\\output_final_logistic.csv.gz"
+inFilePath= "..\\..\\..\\classifier\\Meta\\output_proba_RF_lastCol.csv"
+outFilePath = "..\\..\\..\\output_final.csv.gz"
 
 
 if __name__ == '__main__':
