@@ -28,6 +28,7 @@
     <Compile Include="01-GridSearchClf\LinearSVC2-lastcol.py" />
     <Compile Include="01-GridSearchClf\LinearSVC3.py" />
     <Compile Include="01-GridSearchClf\LinearSVC4.py" />
+    <Compile Include="01-GridSearchClf\LinearSVC5-lastcol.py" />
     <Compile Include="01-GridSearchClf\Logistic1.py" />
     <Compile Include="01-GridSearchClf\Logistic2.py" />
     <Compile Include="01-GridSearchClf\RandomForest.py" />
@@ -44,9 +45,13 @@
     <Compile Include="02-BaseClfOutput\Base_LinearSVC3_part2.py" />
     <Compile Include="02-BaseClfOutput\Base_RandomForest1.py" />
     <Compile Include="03-MetaClf\TrainMetaLogisticRegression1.py" />
+    <Compile Include="03-MetaClf\TrainMetaLogisticRegression2.py" />
+    <Compile Include="03-MetaClf\TrainMetaLogisticRegression3-lastCol.py" />
     <Compile Include="04-FinalPredict\Final1.py" />
+    <Compile Include="04-FinalPredict\Final2.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="05-ReformatOutput\module2.py" />
+    <Compile Include="05-ReformatOutput\module3.py" />
     <Compile Include="Code1.py" />
     <Compile Include="Code2.py" />
     <Compile Include="JoinDataFrames.py" />

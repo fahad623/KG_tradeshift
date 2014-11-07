@@ -1,8 +1,8 @@
 import csv
 import gzip
 
-inFilePath= "..\\..\\..\\classifier\\Meta\\output_proba.csv"
-outFilePath = "..\\..\\..\\output_proba_final.csv.gz"
+inFilePath= "..\\..\\..\\classifier\\Meta\\output.csv"
+outFilePath = "..\\..\\..\\output_final.csv.gz"
 
 
 if __name__ == '__main__':
