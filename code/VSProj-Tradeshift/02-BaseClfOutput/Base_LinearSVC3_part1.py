@@ -58,7 +58,7 @@ if __name__ == '__main__':
         
         pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)        
 
-        kf = KFold(X_train_full.shape[0], n_folds = 4)
+        kf = KFold(X_train_full.shape[0], n_folds = 10)
 
         for train, test in kf:
 

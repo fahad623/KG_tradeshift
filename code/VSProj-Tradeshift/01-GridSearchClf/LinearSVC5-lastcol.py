@@ -13,10 +13,10 @@ testFileX = "..\\..\\..\\data\\test.csv"
 clfFolder = "..\\..\\..\\classifier\\LinearSVC_DF-lastCol\\"
 
 def cv_optimize(X_train, Y_train, clf):
-    C_range = [0.1, 1, 10, 100]
+    C_range = [1000]
     param_grid = dict(C=C_range)
 
-    gs = GridSearchCV(clf, param_grid = param_grid, cv = 5, n_jobs = 2, verbose = 3)
+    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 2, verbose = 3)
     gs.fit(X_train, Y_train)
     print "gs.best_params_ = {0}, gs.best_score_ = {1}".format(gs.best_params_, gs.best_score_)
     return gs.best_estimator_, gs.best_params_, gs.best_score_
