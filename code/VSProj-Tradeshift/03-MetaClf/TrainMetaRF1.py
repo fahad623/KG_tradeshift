@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import SGDClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import roc_auc_score, f1_score, log_loss, make_scorer
 from sklearn.externals import joblib
 from sklearn.grid_search import GridSearchCV
 import os
@@ -10,14 +11,15 @@ trainFileY = "..\\..\\..\\data\\trainLabels.csv"
 
 clfFolder_base1 = "..\\..\\..\\classifier\\RandomForest\\"
 clfFolder_base2 = "..\\..\\..\\classifier\\LinearSVC_DF\\"
-clfFolder = "..\\..\\..\\classifier\\Meta\\"
+clfFolder = "..\\..\\..\\classifier\\MetaRF\\"
 
 
 def cv_optimize(X_train, Y_train, clf):
-    alpha_range = 10.0 ** np.arange(-8, 2)
-    param_grid = dict(alpha=alpha_range)
+    n_estimators_range = [10]
+    param_grid = dict(n_estimators = n_estimators_range)
+    log_loss_scorer = make_scorer(log_loss, needs_proba = True)
 
-    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3)
+    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3, scoring = log_loss_scorer)
     gs.fit(X_train, Y_train)
     print "gs.best_params_ = {0}, gs.best_score_ = {1}".format(gs.best_params_, gs.best_score_)
     return gs.best_estimator_, gs.best_params_, gs.best_score_
