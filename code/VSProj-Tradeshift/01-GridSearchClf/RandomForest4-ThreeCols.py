@@ -70,11 +70,10 @@ if __name__ == '__main__':
         if np.any(Y_train != 0):
             clf = fit_clf(X_train, Y_train)
 
-            predicted_test_proba = clf.predict_proba(X_test)
-            df_output_proba[colName] = predicted_test_proba[:, 1]
+            df_output_proba[colName] = clf.predict_proba(X_test)[:, 1]
 
             df_output[colName] = clf.predict(X_test)
-            df_train_proba[colName] = clf.predict(X_train)
+            df_train_proba[colName] = clf.predict_proba(X_train)
 
             pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)
 
