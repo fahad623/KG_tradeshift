@@ -15,17 +15,17 @@ clfFolder = "..\\..\\..\\classifier\\MetaRF\\"
 
 
 def cv_optimize(X_train, Y_train, clf):
-    n_estimators_range = [10]
+    n_estimators_range = [10, 15, 20, 25]
     param_grid = dict(n_estimators = n_estimators_range)
     log_loss_scorer = make_scorer(log_loss, needs_proba = True)
 
-    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 8, verbose = 3, scoring = log_loss_scorer)
+    gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 4, verbose = 3, scoring = log_loss_scorer)
     gs.fit(X_train, Y_train)
     print "gs.best_params_ = {0}, gs.best_score_ = {1}".format(gs.best_params_, gs.best_score_)
     return gs.best_estimator_, gs.best_params_, gs.best_score_
 
 def fit_clf(X_train, Y_train):
-    clf = SGDClassifier(loss = 'log', n_iter = 10, shuffle = True, random_state = 49)
+    clf = RandomForestClassifier()
     clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
