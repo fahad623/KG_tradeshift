@@ -47,6 +47,8 @@
     <Compile Include="03-MetaClf\TrainMetaLogisticRegression1.py" />
     <Compile Include="03-MetaClf\TrainMetaLogisticRegression2.py" />
     <Compile Include="03-MetaClf\TrainMetaLogisticRegression3-lastCol.py" />
+    <Compile Include="03-MetaClf\TrainMetaLogisticRegression4-lastCol.py" />
+    <Compile Include="03-MetaClf\TrainMetaRF1.py" />
     <Compile Include="04-FinalPredict\Final1.py" />
     <Compile Include="04-FinalPredict\Final2.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
