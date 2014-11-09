@@ -15,9 +15,9 @@ clfFolder = "..\\..\\..\\classifier\\MetaRF\\"
 
 
 def cv_optimize(X_train, Y_train, clf):
-    n_estimators_range = [10, 15, 20, 25]
+    n_estimators_range = [10, 20]
     param_grid = dict(n_estimators = n_estimators_range)
-    log_loss_scorer = make_scorer(log_loss, needs_proba = True)
+    log_loss_scorer = make_scorer(log_loss, greater_is_better = False, needs_proba = True)
 
     gs = GridSearchCV(clf, param_grid = param_grid, cv = 10, n_jobs = 4, verbose = 3, scoring = log_loss_scorer)
     gs.fit(X_train, Y_train)
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     df_train_output = pd.DataFrame(df_train_Y[['id']])
     df_train_output_proba = pd.DataFrame(df_train_Y[['id']])
 
-    for colName in yCols[1:]:
+    for colName in yCols[-1:]:
 
         Y_train = df_train_Y[colName].values
         if np.any(Y_train != 0):

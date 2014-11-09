@@ -26,7 +26,7 @@ def cv_optimize(X_train, Y_train, clf):
 def fit_clf(X_train, Y_train):
     clf = RandomForestClassifier(n_estimators=30)
 
-    #clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
+    clf, bp, bs = cv_optimize(X_train, Y_train, clf)    
     clf.fit(X_train, Y_train)
     return clf
 
