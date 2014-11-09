@@ -11,7 +11,7 @@ import shutil
 trainFileX = "..\\..\\..\\data\\train.csv"
 trainFileY = "..\\..\\..\\data\\trainLabels.csv"
 testFileX = "..\\..\\..\\data\\test.csv"
-clfFolder = "..\\..\\..\\classifier\\RandomForest-ThreeCols\\"
+clfFolder = "..\\..\\..\\classifier\\RandomForest-y9\\"
 
 def cv_optimize(X_train, Y_train, clf):
     n_estimators_range = [10]
@@ -47,9 +47,7 @@ if __name__ == '__main__':
     df_train_X = pd.read_csv(trainFileX)
     clean_features(df_train_X)
 
-    df_train_Y1 = pd.read_csv(trainFileY)
-    df_train_Y = df_train_Y1.loc[df_train_X.index.values]
-    del df_train_Y1
+    df_train_Y = pd.read_csv(trainFileY)
     
     X_train = df_train_X.values[:, 1:]
     yCols = df_train_Y.columns.values.tolist()
@@ -64,7 +62,7 @@ if __name__ == '__main__':
 
     yCols = ['y9', 'y12', 'y33']
 
-    for colName in yCols[1:]:
+    for colName in yCols[0]:
         Y_train = df_train_Y[colName].values
 
         if np.any(Y_train != 0):
@@ -73,7 +71,7 @@ if __name__ == '__main__':
             df_output_proba[colName] = clf.predict_proba(X_test)[:, 1]
 
             df_output[colName] = clf.predict(X_test)
-            df_train_proba[colName] = clf.predict_proba(X_train)
+            df_train_proba[colName] = clf.predict_proba(X_train)[:, 1]
 
             pathClassifier = clfFolder+'classifier_{0}\\'.format(colName)
 
