@@ -35,6 +35,7 @@
     <Compile Include="01-GridSearchClf\RandomForest1.py" />
     <Compile Include="01-GridSearchClf\RandomForest2.py" />
     <Compile Include="01-GridSearchClf\RandomForest3.py" />
+    <Compile Include="01-GridSearchClf\RandomForest4-ThreeCols.py" />
     <Compile Include="01-GridSearchClf\rem-RandomForest4.py" />
     <Compile Include="01-GridSearchClf\SVC1.py" />
     <Compile Include="01-GridSearchClf\SVC2-part1.py" />
