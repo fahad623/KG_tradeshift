@@ -3,7 +3,7 @@ import numpy as np
 
 clfFolder = "..\\..\\..\\classifier\\RandomForest\\"
 
-df_input = pd.read_csv(clfFolder + "output_proba.csv")
+df_input = pd.read_csv(clfFolder + "output_proba62.csv")
 print df_input.shape
 
 def apply_func(row):
@@ -21,4 +21,4 @@ df_input = df_input.apply(apply_func, axis=1)
 df_input['id'] = df_input['id'].astype(np.int64, copy=False)
 print df_input.head()
 
-df_input.to_csv(clfFolder + "output_proba41.csv", index = False)
+df_input.to_csv(clfFolder + "output_proba63.csv", index = False)
