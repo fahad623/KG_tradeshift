@@ -1,8 +1,8 @@
 import csv
 import gzip
 
-inFilePath= "..\\..\\..\\classifier\\Meta\\output.csv"
-outFilePath = "..\\..\\..\\output_final.csv.gz"
+inFilePath= "..\\..\\..\\classifier\\Meta\\output_proba3.csv"
+outFilePath = "..\\..\\..\\output_proba_final3.csv.gz"
 
 
 if __name__ == '__main__':
@@ -18,4 +18,4 @@ if __name__ == '__main__':
                 predictions = row[1:]
 
                 for y_id, pred in enumerate(predictions):
-                    outfile.write('%s_y%s,%s\n' % (id, y_id + 1, pred))
+                    outfile.write('%d_y%s,%s\n' % (id, y_id + 1, pred))

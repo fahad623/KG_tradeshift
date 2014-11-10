@@ -52,12 +52,15 @@
     <Compile Include="03-MetaClf\TrainMetaRF1.py" />
     <Compile Include="04-FinalPredict\Final1.py" />
     <Compile Include="04-FinalPredict\Final2.py" />
+    <Compile Include="04-FinalPredict\PredictLastCol.py" />
+    <Compile Include="04-FinalPredict\PredictLastCol2.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="05-ReformatOutput\module2.py" />
     <Compile Include="05-ReformatOutput\module3.py" />
     <Compile Include="Code1.py" />
     <Compile Include="Code2.py" />
     <Compile Include="JoinDataFrames.py" />
+    <Compile Include="JoinDataFrames2.py" />
     <Compile Include="Test.py" />
     <Compile Include="TruncateTest.py" />
     <Compile Include="TruncateTrain.py" />

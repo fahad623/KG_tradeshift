@@ -48,8 +48,18 @@ from sklearn.cross_validation import cross_val_score, train_test_split, KFold
 #          [5],
 #          [6]]
 
-#df = pd.DataFrame(dict(id = [13, 14, 15, 16, 17, 18],col1=[1,2,3,4,5,6], col2 = [5,6,7,8,9,1]))
-#df_output = pd.DataFrame(df[['id']])
+df = pd.DataFrame(dict(id = [13, 14, 15, 16, 17, 18],col1=[11,12.0,13,14,15,16], col2 = [5,6,7,8,9,1]))
+print df.dtypes
+df['col1'] = df['col1'].astype(np.int64, copy = False)
+print df.dtypes
+
+def apply_func(row):
+    print row
+    row['col3'] = row['col1'] + row['col2']
+    return row
+
+df = df.apply(apply_func, axis=1)
+print df
 
 #kf = KFold(df.shape[0], n_folds=3)
 #for train, test in kf:
@@ -74,5 +84,5 @@ from sklearn.cross_validation import cross_val_score, train_test_split, KFold
 #a = 9
 
 
-a = [2,3,4,5]
-print a[-1:]
+#a = [2,3,4,5]
+#print a[-1:]

@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -11,7 +12,7 @@ import shutil
 trainFileX = "..\\..\\..\\data\\train.csv"
 trainFileY = "..\\..\\..\\data\\trainLabels.csv"
 testFileX = "..\\..\\..\\data\\test.csv"
-clfFolder = "..\\..\\..\\classifier\\RandomForest-ThreeCols\\"
+clfFolder = "..\\..\\..\\classifier\\RandomForest-part2\\"
 
 def cv_optimize(X_train, Y_train, clf):
     n_estimators_range = [10]
@@ -60,9 +61,10 @@ if __name__ == '__main__':
     df_output_proba = pd.DataFrame(df_test[['id']])
     df_train_proba = pd.DataFrame(df_train_Y[['id']])
 
-    yCols = ['y9', 'y12', 'y33']
+    yCols = ['y19', 'y20', 'y21', 'y22', 'y23', 'y24','y25', 'y26', 'y27', 'y28', 'y29', 'y30','y31', 'y32']
 
     for colName in yCols:
+        print colName
         Y_train = df_train_Y[colName].values
 
         if np.any(Y_train != 0):
