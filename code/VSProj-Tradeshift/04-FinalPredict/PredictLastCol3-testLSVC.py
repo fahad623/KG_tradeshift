@@ -1,6 +1,6 @@
 import pandas as pd
 
-clfFolder = "..\\..\\..\\classifier\\Meta\\"
+clfFolder = "..\\..\\..\\classifier\\RandomForest\\"
 
 df_input = pd.read_csv(clfFolder + "output_proba1.csv", dtype={'id': int})
 print df_input.shape

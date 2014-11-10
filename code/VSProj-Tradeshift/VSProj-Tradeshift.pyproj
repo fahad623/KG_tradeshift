@@ -36,6 +36,8 @@
     <Compile Include="01-GridSearchClf\RandomForest2.py" />
     <Compile Include="01-GridSearchClf\RandomForest3.py" />
     <Compile Include="01-GridSearchClf\RandomForest4-ThreeCols.py" />
+    <Compile Include="01-GridSearchClf\RandomForest5-part1.py" />
+    <Compile Include="01-GridSearchClf\RandomForest5-part2.py" />
     <Compile Include="01-GridSearchClf\rem-RandomForest4.py" />
     <Compile Include="01-GridSearchClf\SVC1.py" />
     <Compile Include="01-GridSearchClf\SVC2-part1.py" />
@@ -54,6 +56,10 @@
     <Compile Include="04-FinalPredict\Final2.py" />
     <Compile Include="04-FinalPredict\PredictLastCol.py" />
     <Compile Include="04-FinalPredict\PredictLastCol2.py" />
+    <Compile Include="04-FinalPredict\PredictLastCol3-testLSVC.py" />
+    <Compile Include="04-FinalPredict\PredictLastCol3-testRF.py" />
+    <Compile Include="04-FinalPredict\PredictLastCol3-trainLSVC.py" />
+    <Compile Include="04-FinalPredict\PredictLastCol3-trainRF.py" />
     <Compile Include="05-ReformatOutput\module1.py" />
     <Compile Include="05-ReformatOutput\module2.py" />
     <Compile Include="05-ReformatOutput\module3.py" />

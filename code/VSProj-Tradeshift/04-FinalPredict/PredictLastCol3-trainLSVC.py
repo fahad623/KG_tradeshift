@@ -8,9 +8,9 @@ print df_input.shape
 def apply_func(row):
     print row.id
     row_short = row.iloc[1:33]
-    row_mask_more = (row_short >= 0.5)
+    row_mask_more = (row_short > 0)
     if pd.Series.any(row_mask_more):
-        row['y33'] = (1 - row_short[row_mask_more].mean())
+        row['y33'] = 1
     else:        
         row['y33'] = (1 - row_short.mean())
     
